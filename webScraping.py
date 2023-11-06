@@ -1,0 +1,2 @@
+class webscraping: 
+  def init
