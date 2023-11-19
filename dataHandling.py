@@ -26,7 +26,6 @@ class dataHandling: #inherits from the main class
           print(total, "this is the total")
           mean = total / 5
           print(mean, "this is the mean")
-   #something
   
   def missingValuesCheck(self): 
     pass
