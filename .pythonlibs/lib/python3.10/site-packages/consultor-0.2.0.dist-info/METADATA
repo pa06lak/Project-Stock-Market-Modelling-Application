@@ -1,0 +1,35 @@
+Metadata-Version: 2.0
+Name: consultor
+Version: 0.2.0
+Summary: Consultor te ayuda a explorar las diferentes carreras y cursos que las universidades ofrecen
+Home-page: http://...
+Author: Kevin Eduardo
+Author-email: rgkevin.lopez@gmail.com
+License: mit
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Requires-Dist: beautifultable
+Requires-Dist: pymongo
+
+=======
+consultor
+=======
+
+
+Add a short description here!
+
+
+Description
+===========
+
+A longer description of your project goes here...
+
+
+Note
+====
+
+This project has been set up using PyScaffold 3.0.3. For details and usage
+information on PyScaffold see http://pyscaffold.org/.
+
+

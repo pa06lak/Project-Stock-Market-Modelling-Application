@@ -1,0 +1,6 @@
+
+[console_scripts]
+# script_name = consultor.module:function
+# For example:
+# fibonacci = consultor.skeleton:run
+consultor = consultor.cli:run
