@@ -48,8 +48,3 @@ class webScraping:
   def dataHandling(self): 
     #dataHandling(False, None, False, False, None, None)
     pass
-
-
-
-
-#Do I need a main class?

@@ -26,6 +26,6 @@ class Main:
     pass
   def loadData(self): # Loads data from the database
     pass
-  def dataHandling(self): 
-    dataHandling(False, None, False, False, None, None).sortTheData()
+  def dataHandling(self,Length): 
+    dataHandling(False, None, False, False, None, None).sortTheData(Length)
 
