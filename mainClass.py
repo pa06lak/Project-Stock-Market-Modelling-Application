@@ -1,6 +1,8 @@
 
 from webScraping import webScraping
 from dataHandling import dataHandling
+from database import Database
+from machineLearning import machineLearning
 
 class Main: 
   def __init__(self, URL, dataTempStorage, nameOfStock, Date):
@@ -20,12 +22,17 @@ class Main:
     pass
   def startUserInterface(self): # Starts the user interface
     pass
-  def generatePredictions(self): # Generates predictions
-    pass
+  def generatePredictions(self, splitArray): # Generates predictions
+    machineLearning().trainData(splitArray)
   def shutDown(self): # Shuts down the program
     pass
   def loadData(self): # Loads data from the database
     pass
   def dataHandling(self,Length): 
     dataHandling(False, None, False, False, None, None).sortTheData(Length)
+    arrays = self.database()
+    return arrays
+  def database(self): 
+    arrays = Database("APPL").splitData()
+    return arrays
 

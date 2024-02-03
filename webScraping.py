@@ -28,8 +28,8 @@ class webScraping:
     stock_url = "https://query1.finance.yahoo.com/v7/finance/download/{}?"
     stock = "AAPL"
     params = {
-    "range" :'1y',
-    "interval" : "1wk",
+    "range" :'6mo',
+    "interval" : "1d",
     "events" : "history"
     }
     response = requests.get(stock_url.format(stock), params= params, headers = headers )
@@ -43,8 +43,4 @@ class webScraping:
     for row in data: 
       file.write(str(row) + "\n")
       #print(row)
-    self.dataHandling() 
-  
-  def dataHandling(self): 
-    #dataHandling(False, None, False, False, None, None)
-    pass
+

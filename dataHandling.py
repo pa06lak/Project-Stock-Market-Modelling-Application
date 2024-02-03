@@ -13,10 +13,9 @@ class dataHandling: #inherits from the main class
     self.outlierthesholdUpper = outlierthresholdUpper
     self.outlierThresholdLower = outlierThresholdLower
     
-  def sortTheData(self,Length):
+  def sortTheData(self,Length): 
     row, cols = (Length-2,2)
     sortArray = [[0 for i in range(cols)] for j in range(row)]
-
     i = -1
     indexer = 0
     for key in db.keys(): 
@@ -39,19 +38,12 @@ class dataHandling: #inherits from the main class
     arrayStocks = self.quickSort(sortArray,0,len(sortArray)-1)
     self.outlierCondition(arrayStocks, indexer, realArray)
     
-  def missingValuesCheck(self): 
-    pass
-  def accomodatingMissingValues(self): 
-    pass
-
-
-  
   def outlierCondition(self,arr, num, unsortedArray): 
     df = pd.DataFrame(arr) #this creates a dataframe of all the data
     standardDeviation = df[1].std() #
-    print(standardDeviation)
+    #print(standardDeviation)
     mean = statistics.mean(df[1])
-    print(mean)
+    #print(mean)
     medianIndex = math.ceil(num/2)
     lowerquartileIndex = math.ceil(num*3/4)
     upperquartileIndex = math.ceil(num*1/4)
@@ -60,24 +52,25 @@ class dataHandling: #inherits from the main class
     self.outlierthesholdLower = mean + int(4 * standardDeviation)
     self.outlierCheck(unsortedArray,num)
 
-
-  
   def outlierCheck(self,arr,num):
+    #for key in db.keys(): 
+       #del db[key]
     for valueInArray in range(num): 
       toReplaceArray = []
       toCheckValue = arr[valueInArray][1]
-      print(toCheckValue)
       set = True
       if toCheckValue > self.outlierthesholdUpper or toCheckValue < self.outlierthesholdLower: 
         set = False
-      db[arr[valueInArray][0]] = [arr[valueInArray][1],set]
-      #Here I will need to change this because this is causing me an error. 
-  def transformation(self): 
-    pass
-  def dataLabeller(self): 
-    pass
-  def qualityCheck(self): 
-    pass
+    keyList = []
+    keys = db.keys()
+    for key in db.keys(): 
+      if key not in keyList: 
+        keyList.append(key)
+      else: 
+        del db[key]
+        print("I have deleted", key)
+
+    
   def quickSort(self, arr, start, end): 
       if start >= end:
           return
