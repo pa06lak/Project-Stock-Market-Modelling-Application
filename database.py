@@ -1,6 +1,5 @@
 from replit import db
 from sklearn import preprocessing
-import numpy as np
 
 class Database: 
   def __init__(self, nameOfStock): 
