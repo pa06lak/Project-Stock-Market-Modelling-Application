@@ -4,6 +4,8 @@ import yfinance as yf
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import precision_score
 import joblib
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from datetime import *
 from dataHandling import dataHandling
@@ -165,12 +167,16 @@ class machineLearning:
     plt.grid(True)
     plt.xticks(rotation=45)  # Rotate date labels for better readability
     plt.tight_layout()
-    plt.show()
+    #plt.show()
+    print("something here, this is where the graph has been drawn")
     plt.savefig(self.fileName)
+    print("this is done")
+    return True
 
   def showGraph(self): 
-    graph  = mggraph.imread(self.fileName)
-    plt.imgraph(graph)
+    graph = mpgraph.imread(self.fileName)
+    # Display the figure
+    plt.imshow(graph)
     plt.show()
   
     

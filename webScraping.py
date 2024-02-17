@@ -23,7 +23,7 @@ class webScraping:
     
     #splitting the query parameters -> more generalised and get better time stamps
     stock_url = "https://query1.finance.yahoo.com/v7/finance/download/{}?"
-    stock = "KO"
+    stock = str(self.stock)
     params = {
     "range" :'6mo',
     "interval" : "1d",

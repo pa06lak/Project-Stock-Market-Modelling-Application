@@ -32,15 +32,13 @@ class Main:
     arrays = Database(self.getStock()).splitData()
     return arrays
   def generatePredictions(self, predictionValue): 
-    print("This is the generate prediction values")
     machineLearning(self.getStock()).makeCoordinates(predictionValue)
+    print("the function has ended")
+    return True
   def getGraph(self): 
     machineLearning(self.getStock()).showGraph()
   def getStock(self): 
     return self.nameOfStock
-
-
-
 
 
 

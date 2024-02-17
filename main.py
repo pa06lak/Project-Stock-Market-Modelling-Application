@@ -2,6 +2,8 @@ from mainClass import Main
 from database import Database
 from datetime import *
 import pickle
+import sys
+
 
 def getLastExecutionTime(): #get the date that this program was executed
   try:
@@ -12,22 +14,24 @@ def getLastExecutionTime(): #get the date that this program was executed
   return last_execution_time
 
 def setLastExecutionTime(lastExecution): #sets the date for the program to be executed
-  file = open("lastExecution.pickle", wb)
+  file = open("lastExecution.pickle", "wb")
   pickle.dump(lastExecution, file)
   file.close()
 
 def main(): 
-  #stockArray = ["AAPL", "CVX", "KO"]
-  stockArray = ["KO"]
+  stockArray = ["AAPL", "CVX", "KO"]
   lastExecutionTime = getLastExecutionTime()
   currentTime = date.today()
   if currentTime != lastExecutionTime: #compare the date that the program was last executed
     for stock in stockArray: #for each stock I will get the data
+      print("Something")
+      print(stock)
       executeDaily(stock)
     setLastExecutionTime(currentTime)
   else: 
     stock = "KO"
     Main(stock).getGraph()
+  sys.exit()
     
 def executeDaily(stock): 
   Main(stock).dataRetrieval()
@@ -40,7 +44,11 @@ def executeDaily(stock):
   print("machine learning works")
   Main(stock).generatePredictions(predictionValue)
   print("Finished")
-  exit()
+  print("go to the end")
+  #return True
 
 if __name__ == "__main__": 
   main()
+
+def testing(self): 
+  print("This is testing 123")
