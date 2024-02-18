@@ -3,6 +3,7 @@ from webScraping import webScraping
 from dataHandling import dataHandling
 from database import Database
 from machineLearning import machineLearning
+from userInterface import userInterface
 
 class Main: 
   def __init__(self, nameOfStock):
@@ -16,7 +17,7 @@ class Main:
   def validation(self): # Validates the data
     pass
   def startUserInterface(self): # Starts the user interface
-    pass
+    userInterface().initialiseUI()
   def trainModel(self, splitArray): # Generates predictions
     predictionValue = machineLearning(self.getStock()).trainData(splitArray)
     return predictionValue
@@ -39,7 +40,10 @@ class Main:
     machineLearning(self.getStock()).showGraph()
   def getStock(self): 
     return self.nameOfStock
-
+  def getUserInputtedStock(self): 
+    userInputStock = userInterface().getStockName()
+    print(userInputStock)
+    return userInputStock
 
 
 def analysis(self): # Analyzes the data

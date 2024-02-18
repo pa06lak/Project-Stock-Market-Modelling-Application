@@ -4,9 +4,9 @@ import yfinance as yf
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import precision_score
 import joblib
-import matplotlib
-matplotlib.use('Agg')
+import matplotlib as plt
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 from datetime import *
 from dataHandling import dataHandling
 
@@ -18,7 +18,7 @@ class machineLearning:
     self.predictionValue = 0
     self.dateToday = 0
     self.fileName = ""
-    if self.name == "APPL":
+    if self.name == "AAPL":
       self.actualName = "APPLE"
       self.fileName = "apple.png"
     elif self.name == "KO":
@@ -174,9 +174,9 @@ class machineLearning:
     return True
 
   def showGraph(self): 
-    graph = mpgraph.imread(self.fileName)
-    # Display the figure
+    graph = mpimg.imread(self.fileName)
     plt.imshow(graph)
+    plt.axis('off')  # Hide axis
     plt.show()
   
     
