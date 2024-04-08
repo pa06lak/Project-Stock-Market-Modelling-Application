@@ -36,10 +36,9 @@ class webScraping:
     reader = csv.reader(file)  # Creating a csv reader object to read from file
     data = list(reader)
     file = open("webScrape.txt", "w")
-    file.write(stock + "\n")
-    for row in data: 
+    file.write(stock + "\n") #write the first line
+    for row in data: #write each row from the stocks I have taken
       file.write(str(row) + "\n")
-      #print(row)
   def getStock(self): 
     return self.stock
 

@@ -7,6 +7,7 @@ import joblib
 import matplotlib as plt
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import matplotlib.colors as mcolors
 from datetime import *
 from dataHandling import dataHandling
 
@@ -82,6 +83,7 @@ class machineLearning:
     return pd.concat(all_predictions)
     
   def predict(self, train, validate, predictors, model): 
+    print("something")
     #Here I have created a repeatable function that I will predict the stock trends
     model.fit(train[predictors], train["Target"])
     preds = model.predict(validate[predictors]) #This will take the probability of the model predicting either a increase or decrease in the stock price
@@ -107,6 +109,7 @@ class machineLearning:
     #This could mean that if the market is decreasing then it could increase or vice versa
     new_predictors = [] # hold the new columns that we will create
     for horizon in horizons: 
+      print("Testing")
       rolling_averages = originalStock.rolling(horizon).mean()
       ratio_column = f"Close_Ratio_{horizon}"
       originalStock[ratio_column] = originalStock["Close"] / rolling_averages["Close"]
@@ -123,7 +126,7 @@ class machineLearning:
     lastRow = df.iloc[-1]
     secondToLast = df.iloc[-2]
     difference = abs(float(secondToLast.iloc[3]) - float(lastRow.iloc[3]))
-    self.increase = lastRow.iloc[6]
+    #self.increase = lastRow.iloc[6]
     print(self.increase)
     if self.increase: 
       predictionValue = float(lastRow.iloc[3]) + difference
@@ -133,9 +136,10 @@ class machineLearning:
     
     originalStock = originalStock.dropna()
     stringOriginalStock = originalStock.to_string(header = "False", index = "False")
-    return self.predictionValue
+    toPass = [self.predictionValue, self.precisionScore]
+    return toPass
 
-  def makeCoordinates(self, predictionValue): 
+  def makeCoordinates(self, predictionValue, precisionScore): 
     nextDayPrediction = predictionValue
     print(nextDayPrediction)
     dates = []
@@ -157,18 +161,30 @@ class machineLearning:
     df['Date'] = pd.to_datetime(df['Date'])  # Convert 'Date' column to datetime type
     # Plotting
     plt.figure(figsize=(10, 6))
-    plt.plot(df['Date'], df['Closed'], marker='o', linestyle='-', label='Close Price') #plots all of the historical data
-    plt.scatter(df['Date'].iloc[-1] + pd.Timedelta(days=1), nextDayPrediction, color='red', label='Predicted Next Day Close Price') #plots the one point #timeDelta -> converts into seconds and stores as int
-    plt.plot([df['Date'].iloc[-1], df['Date'].iloc[-1] + pd.Timedelta(days=1)], [df['Closed'].iloc[-1], nextDayPrediction], color='red', linestyle='-')  #joins that one point
-    Title = "Close Price Over Time for Stock" + " " + self.name
+    plt.plot(df['Date'], df['Closed'], marker='o', linestyle='-', label='Close Price') 
+    #plots all of the historical data
+    plt.scatter(df['Date'].iloc[-1] + pd.Timedelta(days=1), nextDayPrediction, color='red', label='Predicted Next Day Close Price') 
+    #plots the one point #timeDelta -> converts into seconds and stores as int
+    plt.plot([df['Date'].iloc[-1], df['Date'].iloc[-1] + pd.Timedelta(days=1)], [df['Closed'].iloc[-1], nextDayPrediction], color='red', linestyle='-')  
+    #joins that one point
+    roundPrecisionScore = round(precisionScore, 2)
+    roundPredicitionValue = round(predictionValue, 2)
+    text = "the precision score is " + str(roundPrecisionScore) + " and the stock will be" + " " + str(roundPredicitionValue)
+    Title = "Close Price Over Time for Stock" + " " + self.name + " " + text
     plt.title(Title)
     plt.xlabel('Date')
     plt.ylabel('Close Price')
     plt.grid(True)
-    plt.xticks(rotation=45)  # Rotate date labels for better readability
+    plt.xticks(rotation=45)  
+    # Rotate date labels for better readability
     plt.tight_layout()
+    if self.increase == True: 
+      path = "increase"
+    else: 
+      path = "decrease"
+    print(text)
+    plt.text(50, 50, text, fontsize=100, color='yellow')
     #plt.show()
-    print("something here, this is where the graph has been drawn")
     plt.savefig(self.fileName)
     print("this is done")
     return True
@@ -176,9 +192,8 @@ class machineLearning:
   def showGraph(self): 
     graph = mpimg.imread(self.fileName)
     plt.imshow(graph)
-    plt.axis('off')  # Hide axis
+    plt.axis('off') 
     plt.show()
-  
     
     
 

@@ -4,6 +4,8 @@ from dataHandling import dataHandling
 from database import Database
 from machineLearning import machineLearning
 from userInterface import userInterface
+from replit import db
+
 
 class Main: 
   def __init__(self, nameOfStock):
@@ -17,7 +19,7 @@ class Main:
   def validation(self): # Validates the data
     pass
   def startUserInterface(self): # Starts the user interface
-    userInterface().initialiseUI()
+    stock = userInterface().initialiseUI()
   def trainModel(self, splitArray): # Generates predictions
     predictionValue = machineLearning(self.getStock()).trainData(splitArray)
     return predictionValue
@@ -32,22 +34,14 @@ class Main:
   def database(self): 
     arrays = Database(self.getStock()).splitData()
     return arrays
-  def generatePredictions(self, predictionValue): 
-    machineLearning(self.getStock()).makeCoordinates(predictionValue)
-    print("the function has ended")
-    return True
+  def generatePredicitons(self, arr): 
+    predicitonValue = arr[0]
+    precisionValue = arr[1]
+    machineLearning(self.getStock()).makeCoordinates(predicitonValue, precisionValue)
   def getGraph(self): 
     machineLearning(self.getStock()).showGraph()
   def getStock(self): 
     return self.nameOfStock
-  def getUserInputtedStock(self): 
-    userInputStock = userInterface().getStockName()
-    print(userInputStock)
-    return userInputStock
-
-
-def analysis(self): # Analyzes the data
-  pass
     
   
 
