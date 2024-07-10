@@ -1,4 +1,6 @@
 **Project Stock Market Modelling Application**
+
+
 Overview
 This project focuses on building a stock market modelling application that leverages machine learning techniques to predict stock prices. It encompasses data handling, web scraping, and provides a user-friendly interface for users to interact with the application.
 
